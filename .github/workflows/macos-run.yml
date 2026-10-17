@@ -1,0 +1,24 @@
+name: Compile and Run C Program on macOS
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile C program
+        run: |
+          clang main.c -o my_program
+          # Если у вас несколько файлов, можно использовать: clang *.c -o my_program
+          # Или если есть Makefile: make
+
+      - name: Run compiled program
+        run: |
+          ./my_program
